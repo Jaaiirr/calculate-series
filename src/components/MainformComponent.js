@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../styles/MainFormComponent.css';
 
 class MainFormComponent extends React.Component {
   render() {
@@ -9,12 +9,12 @@ class MainFormComponent extends React.Component {
       <div className='container-input-radio'>
         <div>
           <label for="one" className='general-text'>Opcion 1</label>
-          <input type="radio" name="one" value="one" id='one'></input>
+          <input type="radio" name="option" value="one" id='one'></input>
         </div>
 
         <div>
           <label for="two" className='general-text'>Opcion 2</label>
-          <input type="radio" name="two" value="two" id='two'></input>
+          <input type="radio" name="option" value="two" id='two'></input>
         </div>
 
       </div>
