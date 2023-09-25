@@ -1,15 +1,16 @@
 @import url('./variables.css');
 
-.container-input-radio{
-  background-color:tomato;
-  height: 30px;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: bold;
+.action-container{
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.main-container{
+  width: 650px;
 }
 
 .message{

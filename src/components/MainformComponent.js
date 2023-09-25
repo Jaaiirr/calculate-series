@@ -1,25 +1,40 @@
 import React from 'react';
+
+import CalculateSeries from './CalculateSeriesComponent';
 import '../styles/MainFormComponent.css';
 
 class MainFormComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      n: '',
+    };
+  };
+
+  handleOnchange = (e) => {
+    this.setState({
+      n: e.target.value,
+    });
+  };
+
   render() {
-    return <div className='main-container'>
-      <p className='tittle-text'>Calculate series</p>
-      <span className='message'>Triangular/Primo/Fibonacci</span>
-      <div className='container-input-radio'>
-        <div>
-          <label for="one" className='general-text'>Opcion 1</label>
-          <input type="radio" name="option" value="one" id='one'></input>
+    return (
+      <div className='main-container'>
+        <p className='tittle-text'>Calculate series</p>
+        <span className='message'>Triangular/Primo/Fibonacci</span>
+        <div className='action-container'>
+          <input
+            className='number-input'
+            type='number'
+            placeholder='Ingresa un número'
+            value={this.state.n}
+            onChange={this.handleOnchange}
+          />
         </div>
-
-        <div>
-          <label for="two" className='general-text'>Opcion 2</label>
-          <input type="radio" name="option" value="two" id='two'></input>
-        </div>
-
+        <CalculateSeries inputValue={this.state.n} />
       </div>
-      <input className='number-input' type='number' placeholder='Ingresa un número'></input>
-    </div>;
+    );
   }
 };
 

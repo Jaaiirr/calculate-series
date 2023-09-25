@@ -1,0 +1,20 @@
+@import url('./variables.css');
+
+.container-cards{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.triangular, .fibonacci, .prime{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 30%;
+  border-radius: 10px;
+  background-color: tomato;
+  color: white;
+  font-weight: bold;
+}

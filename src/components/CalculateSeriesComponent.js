@@ -1,16 +1,29 @@
 import React from 'react';
 
+import ResultComponent from './ResultComponent';
+
 class CalculateSeries extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      n: 0,
-      triangularSeries: 0,
+      triangularSeries: '',
       fibonacciSeries: [],
       primeNumber: [],
     };
   }
+
+  componentDidUpdate(prev) {
+    if (prev.inputValue !== this.props.inputValue) {
+      const newValue = Number(this.props.inputValue);
+      this.setState({
+        n: this.props.inputValue,
+        triangularSeries: this.calculateTriangular(newValue),
+        fibonacciSeries: this.calculateFibonacci(newValue),
+        primeNumber: false,
+      });
+    };
+  };
 
   calculateTriangular(n) {
     return n * (n + 1) / 2;
@@ -31,51 +44,16 @@ class CalculateSeries extends React.Component {
     return n;
   }
 
-  createArrayPrimeNumber(n) {
-    let primeNumberArray = [];
-    for (let i = 2; i < n; i++) {
-      if (this.isPrimeNumber(n)) {
-        primeNumberArray.push(n);
-      }
-    }
-    return primeNumberArray.join(',');
-  };
-
   handleOnChange = (e) => {
     this.setState({
       n: e.target.value,
     });
   }
 
-  handleOnClick = () => {
-    const newValue = parseInt(this.state.n, 10);
-    this.setState({
-      n: newValue,
-      triangularSeries: this.calculateTriangular(newValue),
-      fibonacciSeries: this.calculateFibonacci(newValue),
-      primeNumber: this.createArrayPrimeNumber(newValue),
-    });
-  };
-
   render() {
     return (
       <>
-        <input
-          type="number"
-          value={this.state.n}
-          onChange={this.handleOnChange}
-          placeholder="Ingresa un número"
-        />
-
-        <button
-          type="buton"
-          onClick={this.handleOnClick}
-        >
-          Click me!
-        </button>
-        <p>Triangular: {this.state.triangularSeries}</p>
-        <p>Fibonacci: {this.state.fibonacciSeries}</p>
-        <p>Primo: {this.state.primeNumber}</p>
+        <ResultComponent result={this.state} />
       </>
     );
   }
