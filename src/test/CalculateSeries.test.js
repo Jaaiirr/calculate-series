@@ -1,5 +1,5 @@
 import CalculateSeries from '../components/CalculateSeriesComponent';
-import expectValueFibonacci from './utils/expectedValuesFibonacci';
+import { expectValueFibonacci, expectedValueIsPrime } from './utils/expectedValues';
 
 describe('CalculateSeries TEST', () => {
 
@@ -16,6 +16,11 @@ describe('CalculateSeries TEST', () => {
     test(`Should success when calculateFibonacci(${i}) is called`, () => {
       const result = component.calculateFibonacci(i);
       expect(result).toBe(expectValueFibonacci(i));
+    });
+
+    test(`Should get success when isPrimeNumber(${i}) is called`, () => {
+      const result = component.isPrimeNumber(i);
+      expect(result).toBe(expectedValueIsPrime(i));
     });
   }
 });
