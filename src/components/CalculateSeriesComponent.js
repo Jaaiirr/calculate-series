@@ -1,8 +1,8 @@
-import React from 'react';
+import { Component } from 'react';
 
 import ResultComponent from './ResultComponent';
 
-class CalculateSeries extends React.Component {
+class CalculateSeries extends Component {
   constructor(props) {
     super(props);
 
@@ -14,13 +14,15 @@ class CalculateSeries extends React.Component {
   }
 
   componentDidUpdate(prev) {
+    const { inputValue } = this.props;
+
     if (prev.inputValue !== this.props.inputValue) {
-      const newValue = Number(this.props.inputValue);
+      const newValue = Number(inputValue);
       this.setState({
-        n: this.props.inputValue,
+        n: inputValue,
         triangularSeries: this.calculateTriangular(newValue),
         fibonacciSeries: this.calculateFibonacci(newValue),
-        primeNumber: false,
+        primeNumber: this.primeNumberUpTo(newValue),
       });
     };
   };
@@ -30,19 +32,36 @@ class CalculateSeries extends React.Component {
   };
 
   calculateFibonacci(n) {
+    if (n === 0) return '0';
+    if (n === 1) return '0,1';
+
     let initialFibonacci = [0, 1];
-    for (let i = 2; i < n; i++) {
-      initialFibonacci[i] = initialFibonacci[i - 1] + initialFibonacci[i - 2]
+    for (let i = 2; i <= n; i++) {
+      initialFibonacci.push(initialFibonacci[i - 1] + initialFibonacci[i - 2]);
     }
     return initialFibonacci.join(',');
   };
 
   isPrimeNumber(n) {
+    if (n <= 1) return false;
+    if (n === 2) return true;
+
     for (let i = 2; i < n; i++) {
       if (n % i === 0) return false;
     }
-    return n;
-  }
+
+    return true;
+  };
+
+  primeNumberUpTo(n) {
+    let primesArray = [];
+
+    for (let i = 2; i <= n; i++) {
+      if (this.isPrimeNumber(i))
+        primesArray.push(i);
+    }
+    return primesArray.join(',');
+  };
 
   handleOnChange = (e) => {
     this.setState({
