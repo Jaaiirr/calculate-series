@@ -1,8 +1,8 @@
-import React from "react";
+import { Component } from "react";
 
 import '../styles/ResultComponent.css';
 
-class ResultComponent extends React.Component {
+class ResultComponent extends Component {
   render() {
     const { triangularSeries, fibonacciSeries, primeNumber } = this.props.result;
 

@@ -1,9 +1,9 @@
-import React from 'react';
+import { Component } from 'react';
 
 import CalculateSeries from './CalculateSeriesComponent';
 import '../styles/MainFormComponent.css';
 
-class MainFormComponent extends React.Component {
+class MainFormComponent extends Component {
   constructor(props) {
     super(props);
 
