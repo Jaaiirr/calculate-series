@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Swal from 'sweetalert2'
 
 import CalculateSeries from './CalculateSeriesComponent';
 import '../styles/MainFormComponent.css';
@@ -13,9 +14,20 @@ class MainFormComponent extends Component {
   };
 
   handleOnchange = (e) => {
-    this.setState({
-      n: e.target.value,
-    });
+    const { value } = e.target;
+
+    if (value <= 10) {
+      this.setState({
+        n: value,
+      });
+    } else if (value > 10) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'El número ingresado no debe ser mayor a 10.',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+    };
   };
 
   render() {
